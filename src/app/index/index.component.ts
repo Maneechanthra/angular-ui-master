@@ -46,7 +46,6 @@ export class IndexComponent {
   }
 
   openBoard(boardId: number) {
-    // Corrected method name and parameter
-    this.router.navigate(['/board', boardId]);
+    this.router.navigate(['/column', boardId]);
   }
 }
