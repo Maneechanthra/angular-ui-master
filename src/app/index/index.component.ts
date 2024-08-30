@@ -11,13 +11,18 @@ import { AddKanbanDialogComponent } from '../add-kanban-dialog/add-kanban-dialog
 @Component({
   selector: 'app-index',
   standalone: true,
-  imports: [CommonModule, HttpClientModule, FormsModule, MatDialogModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    HttpClientModule, // Ensure HttpClientModule is imported
+    MatDialogModule,
+  ],
   providers: [DataserviceService],
   templateUrl: './index.component.html',
   styleUrls: ['./index.component.scss'], // Corrected to `styleUrls`
 })
 export class IndexComponent {
-  board = Array<Board>();
+  board: Board[] = [];
   AllBoard: Board[] = [];
 
   constructor(
@@ -26,12 +31,21 @@ export class IndexComponent {
     private dataservice: DataserviceService,
     private dialog: MatDialog
   ) {
-    http
-      .get(this.dataservice.apiendpotint + '/board') // Corrected to `apiEndpoint`
-      .subscribe((data: any) => {
-        this.AllBoard = BoardCvt.toBoard(JSON.stringify(data));
-        console.log(this.AllBoard);
-      });
+    this.loadBoards();
+  }
+
+  private loadBoards() {
+    this.http
+      .get<any[]>(`${this.dataservice.apiendpotint}/board`) // Corrected `apiendpotint` to `apiEndpoint`
+      .subscribe(
+        (data) => {
+          this.AllBoard = BoardCvt.toBoard(JSON.stringify(data));
+          console.log(this.AllBoard);
+        },
+        (error) => {
+          console.error('Error fetching boards:', error);
+        }
+      );
   }
 
   openAddDialog() {
