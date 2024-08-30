@@ -1,0 +1,30 @@
+<h2 mat-dialog-title>Add New Borad</h2>
+<div mat-dialog-content>
+  <div class="card" style="margin: 20px; width: 90%">
+    <div style="display: flex; flex-direction: column; padding: 13px">
+      <div style="display: flex; flex-direction: row; align-items: center">
+        <input
+          matInput
+          [(ngModel)]="board_name"
+          type="board_name"
+          class="form-control"
+          id="board_name"
+          name="board_name"
+          placeholder="Board Name"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+<div mat-dialog-actions>
+  <button class="btn btn-danger" mat-button (click)="onCancel()">Cancel</button>
+  <button
+    style="margin-left: 10px"
+    class="btn btn-primary"
+    mat-button
+    color="primary"
+    (click)="onSave()"
+  >
+    Save
+  </button>
+</div>

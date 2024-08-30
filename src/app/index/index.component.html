@@ -1,0 +1,42 @@
+<div class="container-fluid">
+  <div class="box">
+    <div class="box-row-add">
+      <div class="box-row-flex" (click)="openAddDialog()">
+        <span class="material-symbols-outlined">add</span>
+        <p>Add New Board</p>
+      </div>
+    </div>
+  </div>
+  <div *ngFor="let board of AllBoard">
+    <div class="box" (click)="openBoard(board.id)">
+      <div class="box-row">
+        <div class="box-row-data">
+          <div class="title">
+            <p>Board</p>
+            <span class="material-symbols-outlined">more_vert</span>
+          </div>
+          <div class="detail">
+            <h3>{{ board.board_name }}</h3>
+            <!-- <p>{{ board.description }}</p> -->
+          </div>
+          <hr />
+          <div class="footer">
+            <img
+              src="../../assets/rendering-bee-anime-character.jpg"
+              alt=""
+              width="50px"
+            />
+            <!-- <div class="footer-icon">
+              <span class="material-symbols-outlined">visibility</span>
+              <p>1</p>
+              <span class="material-symbols-outlined">chat_bubble</span>
+              <p>1</p>
+              <span class="material-symbols-outlined">attach_file</span>
+              <p>1</p>
+            </div> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
